@@ -1,5 +1,5 @@
 var audioSend = new Audio('noti.mp4');
-var socket = io.connect('');
+var socket = io.connect();
 var persona = document.getElementById('persona'),
     appChat = document.getElementById('app-chat'),
     panelBienvenida = document.getElementById('panel-bienvenida'),
