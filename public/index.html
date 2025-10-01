@@ -2,31 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Practica de evaluacion Socket</title>
+    <title>Práctica de evaluación Socket</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
-
 </head>
 <body>
 
     <div id="panel-bienvenida">
-        <h2>Practica de evaluacion usando Sockets de comunicacion Angel M.J</h2>
+        <h2>Práctica de evaluación usando Sockets de comunicación</h2>
         <input id="persona" type="text" placeholder="Ingresa tu nombre">
-        <button id="ingresa" onclick="ingresarAlChat()">Ingresar al Chat</button>
+        <button id="ingresar" onclick="ingresarAlChat()">Ingresar al chat</button>
     </div>
-    
+
     <div id="app-chat" style="display:none;">
-        <h2>Practicas de evaluacion 1er. parcial - Angel M.J</h2>
+        <h2>Práctica de evaluación 1er. parcial</h2>
         <h2 class="nube box">Chat con socket</h2>
+        
         <div id="ventana-mensajes">
             <div id="output"></div>
             <div id="escribiendo-mensaje"></div>
         </div>
-        <input id="usuario" type="text" placeholder="Tu nombre" >
+
+        <input id="usuario" type="text" placeholder="Tu nombre">
         <input id="mensaje" type="text" placeholder="Ingresa un mensaje">
-        <button id="enviar">Enviar</button> 
+        <button id="enviar">Enviar</button>
     </div>
 
-    <script src="/chat.js"></script>
+    <script src="chat.js"></script>
 </body>
 </html>

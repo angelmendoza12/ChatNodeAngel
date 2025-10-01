@@ -1,54 +1,54 @@
 var audioSend = new Audio('noti.mp4');
-var socket = io.connect('http://3.141.195.17:4000');
-var persona = document.getElementById('persona'),
-    appChat = document.getElementById('app-chat'),
-    panelBienvenida = document.getElementById('panel-bienvenida'),
-    usuario = document.getElementById('usuario'),
-    mensaje = document.getElementById('mensaje'),
-    botonEnviar = document.getElementById('enviar'),
-    escribiendoMensaje = document.getElementById('escribiendo-mensaje');
-    output = document.getElementById('output');
+var socket = io.connect('http://localhost:5000');
 
-botonEnviar.addEventListener('click', function() {
-    if (mensaje.value) {
+var persona = document.getElementById('persona');
+var appchat = document.getElementById('app-chat');
+var panelBienvenida = document.getElementById('panel-bienvenida');
+var usuario = document.getElementById('usuario');
+var mensaje = document.getElementById('mensaje');
+var botonEnviar = document.getElementById('enviar');
+var escribiendoMensaje = document.getElementById('escribiendo-mensaje');
+var output = document.getElementById('output');
+
+botonEnviar.addEventListener('click', function(){
+    if(mensaje.value){
         socket.emit('chat', {
             mensaje: mensaje.value,
-            usuario: persona.value
-        });        
-}
-mensaje.value = '';
+            usuario: usuario.value
+        });
+    }
+    mensaje.value = '';
 });
 
-mensaje.addEventListener('keyup', function() {
-    if (persona.value){
-    socket.emit('typing', {
-        nombre: usuario.value,
-        texto: mensaje.value
-});
-}
+mensaje.addEventListener('keyup', function(){
+    if(persona.value){
+        socket.emit('typing', {
+            nombre: usuario.value,
+            texto: mensaje.value
+        });
+    }
 });
 
-socket.on('chat', function(data) {
+socket.on('chat', function(data){
     escribiendoMensaje.innerHTML = '';
-    output.innerHTML += '<p><strong>' + data.usuario + ': </strong>' + data.mensaje + '</p>';
+    output.innerHTML += '<p><strong>' + data.usuario + ':</strong> ' + data.mensaje + '</p>';
     audioSend.play();
 });
 
-socket.on('typing', function(data) {
+socket.on('typing', function(data){
     if(data.texto){
-    escribiendomensaje.innerHTML = '<p><em>' + data.nombre + ' está escribiendo un mensaje...</em></p>';
-    }else{
+        escribiendoMensaje.innerHTML = '<p><em>' + data.nombre + ' está escribiendo un mensaje...</em></p>';
+    } else {
         escribiendoMensaje.innerHTML = '';
     }
 });
 
-function ingresarAlChat() {
-    if (persona.value) {
+function ingresarAlChat(){
+    if(persona.value){
         panelBienvenida.style.display = "none";
-        appChat.style.display = "block";
+        appchat.style.display = "block";
         var nombreDeUsuario = persona.value;
         usuario.value = nombreDeUsuario;
         usuario.readOnly = true;
     }
 }
-
